@@ -13,20 +13,24 @@ export const Register = (props) => {
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
-        if (!emailPattern.test(email)) {
+        if (!emailPattern.test(email)) 
+        {
             alert('Please enter a valid email.');
             return;
         }
 
-        if (!passwordPattern.test(pass)) {
+        if (!passwordPattern.test(pass)) 
+        {
             alert('Password must be at least 8 characters long and contain at least one number.');
             return;
         }
 
         // Send the registration request
-        const response = await fetch('http://localhost:3000/api/users/register', {
+        const response = await fetch('http://localhost:3000/api/users/register', 
+        {
             method: 'POST',
-            headers: {
+            headers: 
+            {
                 'Content-Type': 'application/json',
             },
             credentials: 'include', // Ensure cookies are included in the request
@@ -34,10 +38,13 @@ export const Register = (props) => {
         });
 
         const data = await response.text();
-        if (response.status === 201) {
+        if (response.status === 201) 
+        {
             alert('Registration successful!');
             props.onFormSwitch('login');
-        } else {
+        } 
+        else 
+        {
             alert('Registration failed. Please try again.');
         }
         console.log(data);

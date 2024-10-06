@@ -11,15 +11,18 @@ export const Login = (props) => {
         // Simple email validation using RegEx @mcebisi heres regex
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-        if (!emailPattern.test(email)) {
+        if (!emailPattern.test(email)) 
+        {
             alert('Please enter a valid email.');
             return;
         }
 
         // Send the login request
-        const response = await fetch('http://localhost:3000/api/users/login', {
+        const response = await fetch('http://localhost:3000/api/users/login',  
+        {
             method: 'POST',
-            headers: {
+            headers: 
+            {
                 'Content-Type': 'application/json',
             },
             credentials: 'include', // Ensure cookies are included in the request
@@ -27,9 +30,13 @@ export const Login = (props) => {
         });
 
         const data = await response.text();
-        if (response.status === 200) {
+        if (response.status === 200) 
+        {
             alert('Login successful!');
-        } else {
+            //props.onFormSwitch('homepage') //once a dashboard is made it this will navigate to it
+        } 
+        else 
+        {
             alert('Invalid credentials. Please try again.');
         }
         console.log(data);

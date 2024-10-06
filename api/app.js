@@ -37,10 +37,13 @@ app.use('/', indexRouter);
 app.use('/api/users', usersRouter); // Keep API routes under
 
 // 404 and error handling
-app.use(function (req, res, next) {
+app.use(function (req, res, next) 
+{
   next(createError(404));
 });
-app.use(function (err, req, res, next) {
+
+app.use(function (err, req, res, next) 
+{
   res.status(err.status || 500).json({ error: err.message });
 });
 
