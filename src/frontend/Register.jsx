@@ -9,7 +9,7 @@ export const Register = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Simple RegEx pattern for email validation
+        // Simple RegEx pattern for email validation @mcebisi, here is the regex
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
@@ -66,7 +66,7 @@ export const Register = (props) => {
                 />
                 <label htmlFor="password">Password</label>
                 <input
-                    value={pass} // No need for sanitization here
+                    value={pass}
                     onChange={(e) => setPass(e.target.value)}
                     type="password"
                     placeholder="***********"

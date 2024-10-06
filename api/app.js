@@ -34,7 +34,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Route handling
 app.use('/', indexRouter);
-app.use('/api/users', usersRouter); // Keep API routes under /api/users
+app.use('/api/users', usersRouter); // Keep API routes under
 
 // 404 and error handling
 app.use(function (req, res, next) {

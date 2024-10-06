@@ -8,7 +8,7 @@ export const Login = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Simple email validation using RegEx
+        // Simple email validation using RegEx @mcebisi heres regex
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
         if (!emailPattern.test(email)) {
