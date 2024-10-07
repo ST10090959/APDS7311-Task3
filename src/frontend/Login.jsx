@@ -33,6 +33,7 @@ export const Login = (props) => {
         if (response.status === 200) 
         {
             alert('Login successful!');
+            props.onFormSwitch('dashboard')
             //props.onFormSwitch('homepage') //once a dashboard is made it this will navigate to it
         } 
         else 
