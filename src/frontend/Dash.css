@@ -1,53 +1,102 @@
-body, html {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-}
-
-.dash-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 100%;
-  padding: 0;
+.employees-dashboard {
+  font-family: Arial, sans-serif;
+  color: #333;
+  padding: 20px;
+  background-color: #f4f6f9;
+  min-height: 100vh;
 }
 
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #333;
-  padding: 1rem;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 10; /* Ensures it stays above other content */
-}
-
-.navbar-left, .navbar-right {
-  display: flex;
-  align-items: center;
-}
-
-.nav-link {
+  background-color: #007bff;
   color: white;
-  margin-right: 1.5rem;
-  text-decoration: none;
-  font-size: 1rem;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
 }
 
-.nav-link:hover {
-  text-decoration: underline;
+.navbar-logo {
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
-.logout {
+.nav-link.logout {
   cursor: pointer;
-  margin-right: 1.5rem;
+  font-weight: bold;
+  transition: color 0.3s ease;
 }
 
-.dashboard-content {
-  padding: 2rem;
-  padding-top: 4rem; /* Adjust based on navbar height */
+.nav-link.logout:hover {
+  color: #ff4c4c;
+}
+
+.tables-container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.table-section {
+  flex: 1;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  min-width: 300px;
+}
+
+.table-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #333;
+  text-align: center;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 5px;
+}
+
+.employees-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.employees-table th, .employees-table td {
+  padding: 12px 15px;
   text-align: left;
+  border-bottom: 1px solid #ddd;
 }
 
+.employees-table th {
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.employees-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.approve-button {
+  background-color: #28a745;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+}
+
+.approve-button:hover {
+  background-color: #218838;
+}
+
+.empty-message {
+  text-align: center;
+  color: #999;
+  margin-top: 10px;
+  font-size: 0.9rem;
+}

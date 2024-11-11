@@ -1,9 +1,9 @@
-import React, {useState} from "react";
-import logo from './logo.svg';
+import React, { useState } from "react";
 import './App.css';
-import {Login} from "./frontend/Login";
-import {Register} from "./frontend/Register";
+import { Login } from "./frontend/Login";
+import { Register } from "./frontend/Register";
 import { Dashboard } from "./frontend/Dashboard";
+import { EmployeesDashboard } from "./frontend/EmployeesDashboard";
 
 function App() {
   const [currentForm, setCurrentForm] = useState('login');
@@ -17,6 +17,7 @@ function App() {
       {
         currentForm === 'login' ? <Login onFormSwitch={toggleForm} /> :
         currentForm === 'register' ? <Register onFormSwitch={toggleForm} /> :
+        currentForm === 'employeesDashboard' ? <EmployeesDashboard onFormSwitch={toggleForm} /> :
         <Dashboard onFormSwitch={toggleForm} />
       }
     </div>

@@ -1,24 +1,21 @@
 import React, { useState } from "react";
 import DOMPurify from 'dompurify';  // For XSS prevention
+import './Login.css'; // Import the CSS for styling
 
 export const Login = (props) => {
-    const [email, setEmail] = useState('');
+    const [idNumber, setIdNumber] = useState('');
+    const [accountNumber, setAccountNumber] = useState('');
     const [pass, setPass] = useState('');
+    const [userType, setUserType] = useState('customer'); // Default to 'customer'
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Simple email validation using RegEx @mcebisi heres regex
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-        if (!emailPattern.test(email)) 
-        {
-            alert('Please enter a valid email.');
-            return;
-        }
+        // Prepend the appropriate prefix based on user type
+        const prefixedAccountNumber = userType === 'customer' ? `cust${accountNumber}` : `emp${accountNumber}`;
 
         // Send the login request
-        const response = await fetch('http://localhost:3000/api/users/login',  
+        const response = await fetch('https://localhost:3001/api/users/login',  
         {
             method: 'POST',
             headers: 
@@ -26,15 +23,19 @@ export const Login = (props) => {
                 'Content-Type': 'application/json',
             },
             credentials: 'include', // Ensure cookies are included in the request
-            body: JSON.stringify({ email, password: pass }),
+            mode: 'cors',
+            body: JSON.stringify({ idNumber, accountNumber: prefixedAccountNumber, password: pass }),
         });
 
         const data = await response.text();
         if (response.status === 200) 
         {
             alert('Login successful!');
-            props.onFormSwitch('dashboard')
-            //props.onFormSwitch('homepage') //once a dashboard is made it this will navigate to it
+            if (prefixedAccountNumber.startsWith('cust')) {
+                props.onFormSwitch('dashboard'); // Redirect to customer dashboard
+            } else if (prefixedAccountNumber.startsWith('emp')) {
+                props.onFormSwitch('employeesDashboard'); // Redirect to employee dashboard
+            }
         } 
         else 
         {
@@ -47,36 +48,57 @@ export const Login = (props) => {
         <div className="auth-form-container">
             <h2>Login</h2>
             <form className="login-form" onSubmit={handleSubmit}>
-                <label htmlFor="email">Email</label>
-                <input
-                    value={DOMPurify.sanitize(email)} // Sanitize the input to prevent XSS
-                    onChange={(e) => setEmail(e.target.value)}
-                    type="email"
-                    placeholder="yourEmail@gmail.com"
-                    id="email"
-                    name="email"
-                />
-                <label htmlFor="password">Password</label>
-                <input
-                    value={pass} // No need for sanitization here
-                    onChange={(e) => setPass(e.target.value)}
-                    type="password"
-                    placeholder="***********"
-                    id="password"
-                    name="password"
-                />
-                <button type="submit">Log In</button>
+                <div className="form-group">
+                    <label htmlFor="idNumber">ID Number</label>
+                    <input
+                        value={DOMPurify.sanitize(idNumber)}
+                        onChange={(e) => setIdNumber(e.target.value)}
+                        type="text"
+                        placeholder="Your ID Number"
+                        id="idNumber"
+                        name="idNumber"
+                    />
+                </div>
+                
+                <div className="form-group">
+                    <label htmlFor="accountNumber">Account Number</label>
+                    <div className="account-number-container">
+                        <select 
+                            value={userType} 
+                            onChange={(e) => setUserType(e.target.value)}
+                        >
+                            <option value="customer">Customer</option>
+                            <option value="employee">Employee</option>
+                        </select>
+                        <input
+                            value={DOMPurify.sanitize(accountNumber)}
+                            onChange={(e) => setAccountNumber(e.target.value)}
+                            type="text"
+                            placeholder="Account Number (e.g 0002)"
+                            id="accountNumber"
+                            name="accountNumber"
+                        />
+                    </div>
+                </div>
+
+                <div className="form-group">
+                    <label htmlFor="password">Password</label>
+                    <input
+                        value={pass}
+                        onChange={(e) => setPass(e.target.value)}
+                        type="password"
+                        placeholder="***********"
+                        id="password"
+                        name="password"
+                    />
+                </div>
+                
+                <button type="submit" className="submit-btn">Log In</button>
             </form>
+            
             <button className="link-btn" onClick={() => props.onFormSwitch('register')}>
                 Don't have an account? Register
             </button>
         </div>
     );
 };
-
-
-
-
-
-
-

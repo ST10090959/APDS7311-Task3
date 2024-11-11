@@ -4,34 +4,40 @@
   min-height: 100vh;
   align-items: center;
   justify-content: center;
-  color: white;
-  background-image: linear-gradient(79deg, #00005b, rgb(10, 8, 19) 48%, rgb(108, 0, 151) );
+  color: #333; 
+  background-image: linear-gradient(135deg, #f0f7ff, #e0f3f5, #ffe0f7, #fdf2e9); 
 }
 
-.auth-form-container, .login-form, .register-form{
+
+
+
+.auth-form-container, .login-form, .register-form {
   display: flex;
   flex-direction: column;
 }
 
-.auth-form-container{
+.auth-form-container {
   padding: 5rem;
   border: 1px solid white;
   border-radius: 10px;
   margin: 0.5rem;
 }
 
-label{
+label {
   text-align: left;
   padding: 0.25rem 0;
 }
 
-input{
+input, select {
   margin: 0.5rem 0;
   padding: 1rem;
   border-radius: 10px;
+  border: 1px solid #ccc;
+  width: 100%;
+  box-sizing: border-box; /* Ensure padding is included in the width */
 }
 
-button{
+button {
   border: none;
   background-color: white;
   padding: 20px;
@@ -40,9 +46,23 @@ button{
   color: #00005b;
 }
 
+
+
 .link-btn {
   background: none;
   color: white;
   text-decoration: underline;
 }
 
+.account-number-container {
+  display: flex;
+  gap: 10px;
+}
+
+.account-number-container select {
+  flex: 1;
+}
+
+.account-number-container input {
+  flex: 3; 
+}
