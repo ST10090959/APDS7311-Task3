@@ -1,7 +1,3 @@
-yaml
-Copy code
-version: 2.1
-
 jobs:
   sonar_scan:
     docker:
@@ -19,7 +15,7 @@ jobs:
               -Dsonar.projectKey=ST10090959_APDS7311-Task3 \
               -Dsonar.organization=st10090959 \
               -Dsonar.host.url="https://sonarcloud.io" \
-              -Dsonar.login=$SONAR_TOKEN
+              -Dsonar.login=af0487e3d3423209aaea67fa37c69d25d0ee4539
 workflows:
   version: 2
   sonar_workflow:
